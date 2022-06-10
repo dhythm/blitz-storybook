@@ -1,3 +1,11 @@
+const excluded = [
+  /[\\/]npm-which[\\/]/,
+  /[\\/]cross-spawn[\\/]/,
+  /@blitzjs[\\/]config/,
+  /blitz[\\/]packages[\\/]config/,
+  /blitz2[\\/]packages[\\/]config/,
+]
+
 module.exports = {
   stories: ["../app/**/*.stories.mdx", "../app/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -8,5 +16,22 @@ module.exports = {
   framework: "@storybook/react",
   core: {
     builder: "@storybook/builder-webpack5",
+  },
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      issuer: /(mutations|queries)(?!.*\.client)/,
+      resource: /_resolvers/,
+      use: { loader: "null-loader" },
+    })
+
+    excluded.forEach((excluded) => {
+      config.module.rules.push({ test: excluded, use: { loader: "null-loader" } })
+    })
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+    }
+
+    return config
   },
 }
