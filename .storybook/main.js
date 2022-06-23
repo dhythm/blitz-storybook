@@ -32,7 +32,9 @@ module.exports = {
 
     config.resolve.alias = {
       ...config.resolve.alias,
-      "app/components/core": path.resolve(__dirname, "../app/components/core"),
+      // "app/components/core": path.resolve(__dirname, "../app/components/core"),
+      // "app/components/app": path.resolve(__dirname, "../app/components/app"),
+      app: path.resolve(__dirname, "../app"),
     }
 
     return config

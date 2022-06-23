@@ -1,7 +1,7 @@
-import { Dialog, DialogTitle, Grid, IconButton, Typography } from "@mui/material"
+import { Dialog, DialogTitle, Grid, Typography } from "@mui/material"
+import { CloseIconButton } from "app/components/app"
 import { Button } from "app/components/core"
 import { ComponentProps, FC } from "react"
-import CloseIcon from "@mui/icons-material/Close"
 
 type Props = { title?: string; onClose?: () => void; onSubmit?: () => void } & Pick<
   ComponentProps<typeof Dialog>,
@@ -12,14 +12,7 @@ export const LogoutDialog: FC<Props> = ({ title, onClose, onSubmit, ...dialogPro
     <DialogTitle>
       {title}
       {onClose ? (
-        <IconButton
-          aria-label="close"
-          component="button"
-          sx={{ position: "absolute", right: 8, top: 8 }}
-          onClick={onClose}
-        >
-          <CloseIcon />
-        </IconButton>
+        <CloseIconButton sx={{ position: "absolute", right: 8, top: 8 }} onClick={onClose} />
       ) : null}
     </DialogTitle>
     <Grid container paddingX={3} paddingBottom={3} spacing={2}>
@@ -27,7 +20,9 @@ export const LogoutDialog: FC<Props> = ({ title, onClose, onSubmit, ...dialogPro
         <Typography>Are you sure to logout?</Typography>
       </Grid>
       <Grid item xs={6}>
-        <Button onClick={onClose}>Cancel</Button>
+        <Button color="inherit" onClick={onClose}>
+          Cancel
+        </Button>
       </Grid>
       <Grid item xs={6}>
         <Button onClick={onSubmit}>Logout</Button>

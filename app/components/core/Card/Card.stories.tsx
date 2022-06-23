@@ -1,7 +1,7 @@
-import React from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
-import { Card } from "./Card"
 import { Box, Button, CardActions, CardContent, Typography } from "@mui/material"
+import { ComponentMeta, ComponentStory } from "@storybook/react"
+import React from "react"
+import { Card } from "./Card"
 
 export default {
   title: "Components/Core/Card",
@@ -18,7 +18,7 @@ const bull = (
   </Box>
 )
 
-const Component: ComponentStory<typeof Card> = (args) => (
+const Template: ComponentStory<typeof Card> = (args) => (
   <Card {...args}>
     <CardContent>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -42,5 +42,5 @@ const Component: ComponentStory<typeof Card> = (args) => (
   </Card>
 )
 
-export const Default = Component.bind({})
-Default.args = { variant: "elevation" }
+export const $Card = Template.bind({})
+$Card.args = { variant: "elevation" }

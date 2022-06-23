@@ -8,10 +8,10 @@ export default {
   argTypes: {},
 } as ComponentMeta<typeof Button>
 
-const Component: ComponentStory<typeof Button> = (args) => <Button {...args} />
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />
 
-export const Default = Component.bind({})
-Default.args = {
+export const $Button = Template.bind({})
+$Button.args = {
   children: "Button",
   disabled: false,
   fullWidth: false,
