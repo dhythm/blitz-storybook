@@ -1,5 +1,5 @@
 import { ComponentStory, Meta } from "@storybook/react"
-import { handlers } from "app/mocks/handlers"
+import { rest } from "msw"
 import { useEffect } from "react"
 import { ComponentWithApiCall } from "./ComponentWithApiCall"
 
@@ -12,7 +12,16 @@ const Template: ComponentStory<typeof ComponentWithApiCall> = (args) => {
 
   useEffect(() => () => worker.resetHandlers())
 
-  worker.use(handlers.default)
+  worker.use(
+    rest.get("*/user", (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          username: "admin",
+        })
+      )
+    })
+  )
 
   return <ComponentWithApiCall {...args} />
 }
