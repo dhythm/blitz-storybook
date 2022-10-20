@@ -4,7 +4,7 @@ export const ComponentWithApiCall: FC = () => {
   useEffect(() => {
     const _f = async () => {
       const data = await fetch("/user")
-      console.log(data)
+      console.log(await data.json())
     }
     _f()
   }, [])
