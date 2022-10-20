@@ -15,6 +15,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
   ],
+  staticDirs: ["./public"],
   framework: "@storybook/react",
   core: {
     builder: "@storybook/builder-webpack5",
@@ -30,6 +31,10 @@ module.exports = {
     //   config.module.rules.push({ test: excluded, use: { loader: "null-loader" } })
     // })
 
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      timers: require.resolve("timers-browserify"),
+    }
     config.resolve.alias = {
       ...config.resolve.alias,
       // "app/components/core": path.resolve(__dirname, "../app/components/core"),

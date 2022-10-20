@@ -1,5 +1,6 @@
 import { DefaultCtx, SessionContext, SimpleRolesIsAuthorized } from "blitz"
 import { User } from "db"
+import type { SetupWorkerApi } from "msw"
 
 // Note: You should switch to Postgres and then use a DB enum for role type
 export type Role = "ADMIN" | "USER"
@@ -14,5 +15,11 @@ declare module "blitz" {
       userId: User["id"]
       role: Role
     }
+  }
+}
+
+declare global {
+  interface Window {
+    msw: { worker: SetupWorkerApi }
   }
 }
