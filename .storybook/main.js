@@ -39,6 +39,7 @@ module.exports = {
     }
     config.resolve.alias = {
       ...config.resolve.alias,
+      blitz: path.resolve(__dirname, "./mocks"),
       app: path.resolve(__dirname, "../app"),
       db: path.resolve(__dirname, "../db"),
     }

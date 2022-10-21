@@ -27,6 +27,7 @@ const Template: ComponentStory<typeof ComponentWithRpcCall> = (args) => {
     })
   )
 
+  return <ComponentWithRpcCall {...args} />
   return (
     <QueryClientProvider client={defaultQueryClient}>
       <RouterContext.Provider
