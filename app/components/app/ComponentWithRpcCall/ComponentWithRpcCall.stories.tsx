@@ -1,5 +1,7 @@
 import { ComponentStory, Meta } from "@storybook/react"
 import { rest } from "msw"
+import { RouterContext } from "next/dist/shared/lib/router-context"
+import { NextRouter } from "next/router"
 import { useEffect } from "react"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ComponentWithRpcCall } from "./ComponentWithRpcCall"
@@ -27,7 +29,23 @@ const Template: ComponentStory<typeof ComponentWithRpcCall> = (args) => {
 
   return (
     <QueryClientProvider client={defaultQueryClient}>
-      <ComponentWithRpcCall {...args} />
+      <RouterContext.Provider
+        value={
+          {
+            basePath: "",
+            pathname: "/",
+            route: "/",
+            asPath: "/",
+            query: {},
+            isReady: true,
+            isLocaleDomain: false,
+            isPreview: false,
+            isFallback: false,
+          } as NextRouter
+        }
+      >
+        <ComponentWithRpcCall {...args} />
+      </RouterContext.Provider>
     </QueryClientProvider>
   )
 }
