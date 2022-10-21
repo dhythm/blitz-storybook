@@ -1,4 +1,8 @@
 import { setupWorker } from "msw"
+// import { QueryCache, ReactQueryCacheProvider } from "react-query"
+// import { ReactQueryDevtools } from "react-query-devtools"
+
+// const queryCache = new QueryCache()
 
 if (typeof global.process === "undefined") {
   const worker = setupWorker()
@@ -15,3 +19,11 @@ export const parameters = {
     },
   },
 }
+// export const decorators = [
+//   (Story) => (
+//     <ReactQueryCacheProvider queryCache={queryCache}>
+//       <Story />
+//       {/* <ReactQueryDevtools /> */}
+//     </ReactQueryCacheProvider>
+//   ),
+// ]

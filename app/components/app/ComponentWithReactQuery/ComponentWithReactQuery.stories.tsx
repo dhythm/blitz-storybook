@@ -2,24 +2,24 @@ import { ComponentStory, Meta } from "@storybook/react"
 import { rest } from "msw"
 import { useEffect } from "react"
 import { QueryClient, QueryClientProvider } from "react-query"
-import { ComponentWithRpcCall } from "./ComponentWithRpcCall"
+import { ComponentWithReactQuery } from "./ComponentWithReactQuery"
 const defaultQueryClient = new QueryClient()
 
 export default {
-  title: "Components/App/ComponentWithRpcCall",
+  title: "Components/App/ComponentWithReactQuery",
 } as Meta
 
-const Template: ComponentStory<typeof ComponentWithRpcCall> = (args) => {
+const Template: ComponentStory<typeof ComponentWithReactQuery> = (args) => {
   const { worker } = window.msw
 
   useEffect(() => () => worker.resetHandlers())
 
   worker.use(
-    rest.post("*/api/getCurrentUser", (req, res, ctx) => {
+    rest.get("*/user", (req, res, ctx) => {
       return res(
         ctx.status(200),
         ctx.json({
-          name: "admin",
+          username: "admin",
         })
       )
     })
@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof ComponentWithRpcCall> = (args) => {
 
   return (
     <QueryClientProvider client={defaultQueryClient}>
-      <ComponentWithRpcCall {...args} />
+      <ComponentWithReactQuery {...args} />
     </QueryClientProvider>
   )
 }
