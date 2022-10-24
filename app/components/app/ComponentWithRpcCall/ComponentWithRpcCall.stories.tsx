@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof ComponentWithRpcCall> = (args) => {
   useEffect(() => () => worker.resetHandlers())
 
   worker.use(
-    rest.post("*", (req, res, ctx) => {
+    rest.post("*/api/rpc/getCurrentUser", (req, res, ctx) => {
       return res(
         ctx.status(200),
         ctx.json({

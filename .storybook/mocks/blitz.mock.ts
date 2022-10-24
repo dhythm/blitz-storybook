@@ -25,7 +25,7 @@ export function useQuery(queryFn: any, params: any, options?: any) {
   const [data, setData] = useState(null)
   useEffect(() => {
     const _f = async () => {
-      setData(await mockFn("/mock"))
+      setData(await mockFn(`/api/rpc/${queryFn.name}`))
     }
     _f()
   }, [])
